@@ -31,7 +31,7 @@ namespace atdlist { //АТД список
         void makenull();
         void assign(const elem &x);
         bool compute(domaintype key, const rangetype &value);
-        void print();
+        void print() const;
     private:
         List _ob;
     };
@@ -52,7 +52,7 @@ namespace dlist { //Список пар
         void makenull();
         void assign(const elem &x);
         bool compute(domaintype key, const rangetype &value);
-        void print();
+        void print() const;
     private:
         node * _head;
         node * search_same_pos(node * list, const elem &x); //Поиск ключа

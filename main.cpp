@@ -3,7 +3,7 @@
 //
 #include <fstream>
 #include "Associative.h"
-using namespace dlist;
+using namespace atdlist;
 
 void readFile(Associative &arr, const char * fname)
 {

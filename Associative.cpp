@@ -3,11 +3,11 @@
 //
 
 #include "Associative.h"
+node err; //Создаем элемент для проверки(если нашли, нам вернет адрес фейка)
 
 void atdlist::Associative::assign(const elem &x)
 {
     int pos = _ob.locate(x); //Ищем ключ
-    node err; //Создаем элемент для проверки(если нашли, нам вернет адрес фейка)
     if(err.next == pos) //Если не нашли
     {
         _ob.insert(_ob.endL(), x); //Вставляем в конец
@@ -26,7 +26,6 @@ bool atdlist::Associative::compute(domaintype key, const rangetype &value)
 {
     elem x(key.dtype, value.rtype);
     int pos = _ob.locate(x);
-    node err;
     if(err.next != pos)
     {
         _ob.insert(pos, x);
@@ -37,7 +36,7 @@ bool atdlist::Associative::compute(domaintype key, const rangetype &value)
     }
 }
 
-void atdlist::Associative::print()
+void atdlist::Associative::print() const
 {
     std::cout << std::setw(25) << "domaintype ";
     std::cout << std::setw(25) << "rangetype" << std::endl;
@@ -90,7 +89,7 @@ bool dlist::Associative::compute(domaintype key, const rangetype &value)
 
 }
 
-void dlist::Associative::print()
+void dlist::Associative::print() const
 {
     std::cout << std::setw(25) << "domaintype ";
     std::cout << "rangetype" << std::endl;
