@@ -61,14 +61,13 @@ void dlist::Associative::assign(const elem &x)
 {
     if(_head == nullptr) //Если список пуст
     {
-        _head = new node; //Добавляем новую голову
-        _head -> data = x; //Записываем данные
-        _head -> next = nullptr; //Следующий пустой
+        _head = new node(x, nullptr);
     } else {
         node * temp = search_same_pos(_head, x); //Ищем ключ
         if(temp == nullptr) //Если не нашли
         {
-            _head = add_to_tail(_head, x); //Добавляем в конец
+            node * htemp = _head;
+            _head = new node(x, htemp);
         } else {
             temp -> data = x; //Записываем в найденную ячейку
         }
@@ -86,7 +85,6 @@ bool dlist::Associative::compute(domaintype key, const rangetype &value)
         temp -> data = x; //Записываем в найденную ячейку
         return true;
     }
-
 }
 
 void dlist::Associative::print() const
@@ -119,21 +117,6 @@ dlist::node * dlist::Associative::deleteList(node * list)
 void dlist::Associative::makenull()
 {
     _head = deleteList(_head);
-}
-
-dlist::node * dlist::Associative::add_to_tail(node * list, elem x)
-{
-    node * temp1 = list; //Указатель на голову
-    node * temp2 = temp1 -> next; //Указатель на второй элемент
-    while (temp2 != nullptr)
-    {
-        temp1 = temp1 -> next;//Доходим до предпоследнего элемента
-        temp2 = temp2 -> next;
-    }
-    temp1 -> next = new node; //Добавляем элемент в конец
-    temp1 -> next -> data = x;
-    temp1 -> next -> next = nullptr;
-    return list;
 }
 
 dlist::node * dlist::Associative::search_same_pos(node * list, const elem &x)

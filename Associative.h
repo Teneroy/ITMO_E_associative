@@ -43,6 +43,12 @@ namespace dlist { //Список пар
     struct node {
         elem data;
         node * next;
+        node()
+        {
+            next = nullptr;
+        };
+        node(elem d, node * n):data(d),next(n)
+        {}
     };
 
     class Associative {
@@ -57,7 +63,6 @@ namespace dlist { //Список пар
         node * _head;
         node * search_same_pos(node * list, const elem &x); //Поиск ключа
         node * deleteList(node * list); //Удаление списка
-        node * add_to_tail(node * list, elem x); //Добавление элемента в хвост списка
     };
 
 }
